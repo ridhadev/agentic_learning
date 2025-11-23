@@ -10,9 +10,9 @@ Reflection can be  run more than twice (till certain criteria is met) but the sa
 
 The workflow is as follows:
 1) INITIAL PROMPT: Generate code (V1)
-2) Execute V1
+2) Execute V1 and generate the image
 3) REFLECTIVE PROMPT: Reflect on V1 (image + original code) to get feedback and refined code (V2)
-4) Execute V2
+4) Execute V2 and generate the (enhanced) image
 
 In this example, the initial prompt is to create a plot comparing Q1 coffee sales in 2024 and 2025 using the data in coffee_sales.csv.
 
@@ -265,6 +265,6 @@ if __name__ == "__main__":
     run_workflow(
         dataset_path=csv_path,
         user_instructions="Create a plot comparing Q1 coffee sales in 2024 and 2025 using the data in coffee_sales.csv.",
-        generation_model="o4-mini",
-        reflection_model="o4-mini",
+        generation_model="gpt-o4-mini",
+        reflection_model="gpt-o4-mini",
     )
