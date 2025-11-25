@@ -1,6 +1,13 @@
 """
-Build a single AI agents with use of custom Tools implemented locally.
+Demo script that use local Tools and Reflection Pattern.
 
+Build a sequential workflow of three agents to :
+
+1- generate a research report using Arxiv and Tavily tools
+2- Reflect on the first report and generate a second report
+3- Generate a final HTML report based on the second report
+
+The HTML report is generated under ./data/output/researcher_with_tools_and_reflection.html
 """
 
 from agentic_learning.tools import research_tools

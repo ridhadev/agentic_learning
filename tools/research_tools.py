@@ -2,6 +2,7 @@
 # Standard library imports
 # ================================
 import os
+from pathlib import Path
 import xml.etree.ElementTree as ET
 
 # ================================
@@ -13,7 +14,9 @@ from dotenv import load_dotenv
 
 # ================================
 
-load_dotenv()
+# Load .env from the project root (one level up from tools/)
+_project_root = Path(__file__).resolve().parent.parent
+load_dotenv(_project_root / ".env")
 
 session = requests.Session()
 session.headers.update(
@@ -175,6 +178,55 @@ tavily_tool_def = {
     },
 }
 
+## Wikipedia search tool
+
+def wikipedia_search_tool(query: str, sentences: int = 5) -> list[dict]:
+    """
+    Searches Wikipedia for a summary of the given query.
+
+    Args:
+        query (str): Search query for Wikipedia.
+        sentences (int): Number of sentences to include in the summary.
+
+    Returns:
+        list[dict]: A list with a single dictionary containing title, summary, and URL.
+    """
+    try:
+        page_title = wikipedia.search(query)[0]
+        page = wikipedia.page(page_title)
+        summary = wikipedia.summary(page_title, sentences=sentences)
+
+        return [{
+            "title": page.title,
+            "summary": summary,
+            "url": page.url
+        }]
+    except Exception as e:
+        return [{"error": str(e)}]
+
+# Tool definition
+wikipedia_tool_def = {
+    "type": "function",
+    "function": {
+        "name": "wikipedia_search_tool",
+        "description": "Searches for a Wikipedia article summary by query string.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "query": {
+                    "type": "string",
+                    "description": "Search keywords for the Wikipedia article."
+                },
+                "sentences": {
+                    "type": "integer",
+                    "description": "Number of sentences in the summary.",
+                    "default": 5
+                }
+            },
+            "required": ["query"]
+        }
+    }
+}
 
 def parse_input(text_or_messages):
     if isinstance(text_or_messages, list):
