@@ -4,11 +4,15 @@ This library is designed to facilitate the learning and implementation of agenti
 
 ## Objective
 
-The primary objective of this module is to serve as a comprehensive educational and experimental sandbox for:
-- **Understanding Core Patterns**: Implementing fundamental agentic patterns like Reflection, ReAct, and Planning.
-- **Multi-Agent Orchestration**: Exploring how multiple agents collaborate through routing, handoffs, and supervision.
-- **Framework Agnosticism**: demonstrating how to build agents that can leverage different underlying LLM providers and frameworks (LangChain, AISuite).
-- **Evaluation & Benchmarking**: Providing tools to rigorously measure agent performance using both deterministic metrics and LLM-as-a-judge approaches.
+Contains code from:
+
+1- Agentic AI from DeepLearningAI course : Evaluation Agent 
+
+2- Google 5 Days Agengic AI Kaggle with
+    - Agent Memory management 
+    - Agent tracing and debugging (Plugin, ...)
+    - Evaluation Agent using Google Web UI
+    - A2A example
 
 ## Quick Start
 

@@ -56,9 +56,13 @@ Thumbs.db
 
 # Logs
 *.log
-
+*.adk
 # Agentic specific
 *.png
+*evalset.json
+.adk/*
 
+*.db
 
 */data/output/*
+
